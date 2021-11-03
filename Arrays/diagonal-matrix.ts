@@ -27,3 +27,25 @@
   }
   console.table(matrix);
 }
+
+// second solution:
+console.log('Second solution with ".splice":');
+{
+  function diagonal_Matrix(sizeOfMatrix: number) {
+    let arrfillwithnull = new Array(sizeOfMatrix).fill(
+      new Array(sizeOfMatrix).fill(0)
+    );
+    let matrix: number[][] = [];
+    for (let i = 0; i < arrfillwithnull.length; i++) {
+      for (let j = 0; j < arrfillwithnull[i].length; j++) {
+        if (i == j) {
+          let cloneArr = arrfillwithnull[i].slice(0);
+          cloneArr.splice(i, 1, 1);
+          matrix.push(cloneArr);
+        }
+      }
+    }
+    console.log(matrix);
+  }
+  diagonal_Matrix(5);
+}
