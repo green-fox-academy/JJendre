@@ -39,11 +39,11 @@ function DoweknoThehonenumberof(Name: string) {
   for (let i = 0; i < Object.keys(MyTelephoneBook).length; i++) {
     if (Object.keys(MyTelephoneBook)[i] == Name) {
       console.log(Object.values(MyTelephoneBook)[i]);
-      Bynomatch = Object.values(MyTelephoneBook)[i];
+      Bynomatch = Bynomatch.concat(Object.values(MyTelephoneBook)[i]);
     }
   }
-  if (Bynomatch.lenght == undefined) console.log("We don't know");
-  {
+  if (Bynomatch == "") {
+    console.log("We don't know");
   }
 }
 
