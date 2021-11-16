@@ -20,10 +20,27 @@ const readline = require("readline").createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-readline.question("Please give your first input here: ", (input) => {
-  readline.question("Please enter your second input: ", (input2) => {
-    var result = +input + +input2;
-    console.log("The sum of above nmbers is: " + result);
+readline.question(
+  "Please give your input here {operator: +, -, *, /, %} {operand} {operand}, like this: * 5 8: ",
+  (input) => {
+    var result = 0;
+    const splitinput = input.split(" ");
+    console.log(splitinput);
+    let inputa = splitinput[1] * 1;
+    let inputb = splitinput[2] * 1;
+    if (splitinput[0] === "+") {
+      result = inputa + inputb;
+    } else if (splitinput[0] === "*") {
+      result = inputa * inputb;
+    } else if (splitinput[0] === "/") {
+      result = inputa / inputb;
+    } else if (splitinput[0] === "-") {
+      result = inputa - inputb;
+    } else if (splitinput[0] === "%") {
+      result = (inputb / inputa) * 100 + "%";
+    }
+
+    console.log(result);
     readline.close();
-  });
-});
+  }
+);
