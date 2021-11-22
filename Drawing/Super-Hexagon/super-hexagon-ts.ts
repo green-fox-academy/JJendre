@@ -1,129 +1,91 @@
 const canvas = document.querySelector(".main-canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d");
 export {};
-let cellsize: number = 10;
-let cellnumber: number = 19;
+let cellsize: number = 19;
+let cellnumber: number = 10;
 let origox = 200;
 let origoy = 380;
+let halfcellhigh: number = Math.sqrt(
+  Math.pow(cellsize, 2) - Math.pow(cellsize / 2, 2)
+);
+let ilenght: number = Math.round(cellnumber / 2);
+if (cellnumber % 2 === 0) {
+  ilenght = ilenght + 1;
+}
+let jlenght: number = Math.round(cellnumber / 2);
 
-function hexagonmiddle(steps: number, cells: number) {
+let ax: number = origox;
+let ay: number = origoy;
+let bx: number = origox + cellsize;
+let by: number = origoy;
+let cx: number = origox + cellsize + cellsize / 2;
+let cy: number = origoy - halfcellhigh;
+let dx: number = origox + cellsize;
+let dy: number = origoy - halfcellhigh * 2;
+let ex: number = origox;
+let ey: number = origoy - halfcellhigh * 2;
+let fx: number = origox - cellsize / 2;
+let fy: number = origoy - halfcellhigh;
+
+function hexagonmiddle(cellsize: number, cells: number) {
   for (let i = 0; i < cells; i++) {
-    let ax: number = origox;
-    let ay: number = origoy;
-    let bx: number = origox + steps;
-    let by: number = origoy;
-    let cx: number = origox + steps + steps / 2;
-    let cy: number =
-      origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2));
-    let dx: number = origox + steps;
-    let dy: number =
-      origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2;
-    let ex: number = origox;
-    let ey: number =
-      origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2;
-    let fx: number = origox - steps / 2;
-    let fy: number =
-      origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2));
-
-    ctx.strokeStyle = "green";
+    ctx.strokeStyle =
+      "rgb(" +
+      Math.floor(260 - 20 * i) +
+      ", " +
+      Math.floor(260 - 20 * i) +
+      ", 0)";
     ctx.beginPath();
-    ctx.moveTo(
-      ax,
-      ay - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
-    ctx.lineTo(
-      bx,
-      by - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
-    ctx.lineTo(
-      cx,
-      cy - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
-    ctx.lineTo(
-      dx,
-      dy - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
-    ctx.lineTo(
-      ex,
-      ey - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
-    ctx.lineTo(
-      fx,
-      fy - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
-    ctx.lineTo(
-      ax,
-      ay - i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2
-    );
+    ctx.moveTo(ax, ay - i * halfcellhigh * 2);
+    ctx.lineTo(bx, by - i * halfcellhigh * 2);
+    ctx.lineTo(cx, cy - i * halfcellhigh * 2);
+    ctx.lineTo(dx, dy - i * halfcellhigh * 2);
+    ctx.lineTo(ex, ey - i * halfcellhigh * 2);
+    ctx.lineTo(fx, fy - i * halfcellhigh * 2);
+    ctx.lineTo(ax, ay - i * halfcellhigh * 2);
 
     ctx.stroke();
   }
 }
 hexagonmiddle(cellsize, cellnumber);
 
-function hexagonrightside(steps: number, cells: number) {
-  for (let i = 0; i < cells / 2; i++) {
-    for (let j = 0; j < cells / 2; j++) {
-      let ax: number = origox;
-      let ay: number = origoy;
-      let bx: number = origox + steps;
-      let by: number = origoy;
-      let cx: number = origox + steps + steps / 2;
-      let cy: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2));
-      let dx: number = origox + steps;
-      let dy: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2;
-      let ex: number = origox;
-      let ey: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2;
-      let fx: number = origox - steps / 2;
-      let fy: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2));
-
-      ctx.strokeStyle = "green";
+function hexagonrightside(cellsize: number, cells: number) {
+  for (let i = 0; i < ilenght; i++) {
+    for (let j = 0; j < jlenght; j++) {
+      ctx.strokeStyle =
+        "rgb(" +
+        Math.floor(260 - 20 * i) +
+        ", " +
+        Math.floor(260 - 20 * j) +
+        ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax + i * (steps + steps / 2),
-        ay -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax + i * (cellsize + cellsize / 2),
+        ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx + i * (steps + steps / 2),
-        by -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        bx + i * (cellsize + cellsize / 2),
+        by - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx + i * (steps + steps / 2),
-        cy -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        cx + i * (cellsize + cellsize / 2),
+        cy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx + i * (steps + steps / 2),
-        dy -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        dx + i * (cellsize + cellsize / 2),
+        dy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex + i * (steps + steps / 2),
-        ey -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ex + i * (cellsize + cellsize / 2),
+        ey - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx + i * (steps + steps / 2),
-        fy -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        fx + i * (cellsize + cellsize / 2),
+        fy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax + i * (steps + steps / 2),
-        ay -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax + i * (cellsize + cellsize / 2),
+        ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
 
       ctx.stroke();
@@ -132,69 +94,43 @@ function hexagonrightside(steps: number, cells: number) {
 }
 hexagonrightside(cellsize, cellnumber);
 
-function hexagonleftside(steps: number, cells: number) {
-  for (let i = 0; i < cells / 2; i++) {
-    for (let j = 0; j < cells / 2; j++) {
-      let ax: number = origox;
-      let ay: number = origoy;
-      let bx: number = origox + steps;
-      let by: number = origoy;
-      let cx: number = origox + steps + steps / 2;
-      let cy: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2));
-      let dx: number = origox + steps;
-      let dy: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2;
-      let ex: number = origox;
-      let ey: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2;
-      let fx: number = origox - steps / 2;
-      let fy: number =
-        origoy - Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2));
-
-      ctx.strokeStyle = "green";
+function hexagonleftside(cellsize: number, cells: number) {
+  for (let i = 0; i < ilenght; i++) {
+    for (let j = 0; j < jlenght; j++) {
+      ctx.strokeStyle =
+        "rgb(" +
+        Math.floor(260 - 20 * i) +
+        ", " +
+        Math.floor(260 - 20 * j) +
+        ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax - i * (steps + steps / 2),
-        ay -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax - i * (cellsize + cellsize / 2),
+        ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx - i * (steps + steps / 2),
-        by -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        bx - i * (cellsize + cellsize / 2),
+        by - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx - i * (steps + steps / 2),
-        cy -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        cx - i * (cellsize + cellsize / 2),
+        cy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx - i * (steps + steps / 2),
-        dy -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        dx - i * (cellsize + cellsize / 2),
+        dy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex - i * (steps + steps / 2),
-        ey -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ex - i * (cellsize + cellsize / 2),
+        ey - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx - i * (steps + steps / 2),
-        fy -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        fx - i * (cellsize + cellsize / 2),
+        fy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax - i * (steps + steps / 2),
-        ay -
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax - i * (cellsize + cellsize / 2),
+        ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
 
       ctx.stroke();
@@ -203,93 +139,58 @@ function hexagonleftside(steps: number, cells: number) {
 }
 hexagonleftside(cellsize, cellnumber);
 
-function hexagonrighttop(steps: number, cells: number) {
-  for (let i = 0; i < cells / 2; i++) {
-    for (let j = 0; j < cells / 2; j++) {
+function hexagonrighttop(cellsize: number, cells: number) {
+  for (let i = 0; i < ilenght; i++) {
+    for (let j = 0; j < jlenght; j++) {
       let ax: number = origox;
-      let ay: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let bx: number = origox + steps;
-      let by: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let cx: number = origox + steps + steps / 2;
-      let cy: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let dx: number = origox + steps;
+      let ay: number = origoy - halfcellhigh * 2 * (cells - 1);
+      let bx: number = origox + cellsize;
+      let by: number = origoy - halfcellhigh * 2 * (cells - 1);
+      let cx: number = origox + cellsize + cellsize / 2;
+      let cy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
+      let dx: number = origox + cellsize;
       let dy: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2 -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
+        origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
       let ex: number = origox;
       let ey: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2 -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let fx: number = origox - steps / 2;
-      let fy: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
+        origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
+      let fx: number = origox - cellsize / 2;
+      let fy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
 
-      ctx.strokeStyle = "green";
+      ctx.strokeStyle =
+        "rgb(" +
+        Math.floor(260 - 20 * i) +
+        ", " +
+        Math.floor(260 - 20 * j) +
+        ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax + i * (steps + steps / 2),
-        ay +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax + i * (cellsize + cellsize / 2),
+        ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx + i * (steps + steps / 2),
-        by +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        bx + i * (cellsize + cellsize / 2),
+        by + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx + i * (steps + steps / 2),
-        cy +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        cx + i * (cellsize + cellsize / 2),
+        cy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx + i * (steps + steps / 2),
-        dy +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        dx + i * (cellsize + cellsize / 2),
+        dy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex + i * (steps + steps / 2),
-        ey +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ex + i * (cellsize + cellsize / 2),
+        ey + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx + i * (steps + steps / 2),
-        fy +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        fx + i * (cellsize + cellsize / 2),
+        fy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax + i * (steps + steps / 2),
-        ay +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax + i * (cellsize + cellsize / 2),
+        ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
 
       ctx.stroke();
@@ -298,93 +199,58 @@ function hexagonrighttop(steps: number, cells: number) {
 }
 hexagonrighttop(cellsize, cellnumber);
 
-function hexagonlefttop(steps: number, cells: number) {
-  for (let i = 0; i < cells / 2; i++) {
-    for (let j = 0; j < cells / 2; j++) {
+function hexagonlefttop(cellsize: number, cells: number) {
+  for (let i = 0; i < ilenght; i++) {
+    for (let j = 0; j < jlenght; j++) {
       let ax: number = origox;
-      let ay: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let bx: number = origox + steps;
-      let by: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let cx: number = origox + steps + steps / 2;
-      let cy: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let dx: number = origox + steps;
+      let ay: number = origoy - halfcellhigh * 2 * (cells - 1);
+      let bx: number = origox + cellsize;
+      let by: number = origoy - halfcellhigh * 2 * (cells - 1);
+      let cx: number = origox + cellsize + cellsize / 2;
+      let cy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
+      let dx: number = origox + cellsize;
       let dy: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2 -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
+        origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
       let ex: number = origox;
       let ey: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) * 2 -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
-      let fx: number = origox - steps / 2;
-      let fy: number =
-        origoy -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) -
-        Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) *
-          2 *
-          (cells - 1);
+        origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
+      let fx: number = origox - cellsize / 2;
+      let fy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
 
-      ctx.strokeStyle = "green";
+      ctx.strokeStyle =
+        "rgb(" +
+        Math.floor(260 - 20 * i) +
+        ", " +
+        Math.floor(260 - 20 * j) +
+        ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax - i * (steps + steps / 2),
-        ay +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax - i * (cellsize + cellsize / 2),
+        ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx - i * (steps + steps / 2),
-        by +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        bx - i * (cellsize + cellsize / 2),
+        by + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx - i * (steps + steps / 2),
-        cy +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        cx - i * (cellsize + cellsize / 2),
+        cy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx - i * (steps + steps / 2),
-        dy +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        dx - i * (cellsize + cellsize / 2),
+        dy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex - i * (steps + steps / 2),
-        ey +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ex - i * (cellsize + cellsize / 2),
+        ey + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx - i * (steps + steps / 2),
-        fy +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        fx - i * (cellsize + cellsize / 2),
+        fy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax - i * (steps + steps / 2),
-        ay +
-          i * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2)) +
-          j * 2 * Math.sqrt(Math.pow(steps, 2) - Math.pow(steps / 2, 2))
+        ax - i * (cellsize + cellsize / 2),
+        ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
 
       ctx.stroke();
