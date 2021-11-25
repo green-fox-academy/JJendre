@@ -1,33 +1,36 @@
 const canvas = document.querySelector(".main-canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d");
 export {};
-let cellsize: number = 19;
-let cellnumber: number = 10;
-let origox = 200;
-let origoy = 380;
-let halfcellhigh: number = Math.sqrt(
-  Math.pow(cellsize, 2) - Math.pow(cellsize / 2, 2)
-);
-let ilenght: number = Math.round(cellnumber / 2);
-if (cellnumber % 2 === 0) {
-  ilenght = ilenght + 1;
-}
-let jlenght: number = Math.round(cellnumber / 2);
+let cellsize: number = 10;
+let cellnumber: number = 20;
+let origox = 160;
+let origoy = 400;
 
-let ax: number = origox;
-let ay: number = origoy;
-let bx: number = origox + cellsize;
-let by: number = origoy;
-let cx: number = origox + cellsize + cellsize / 2;
-let cy: number = origoy - halfcellhigh;
-let dx: number = origox + cellsize;
-let dy: number = origoy - halfcellhigh * 2;
-let ex: number = origox;
-let ey: number = origoy - halfcellhigh * 2;
-let fx: number = origox - cellsize / 2;
-let fy: number = origoy - halfcellhigh;
+function hexagon(getcellsize: number, cells: number) {
+  origox = 230 - cellsize * 0.7 - cellnumber * 0.9;
+  let halfcellhigh: number = Math.sqrt(
+    Math.pow(cellsize, 2) - Math.pow(cellsize / 2, 2)
+  );
+  let ilenght: number = Math.round(cellnumber / 2);
+  if (cellnumber % 2 === 0) {
+    ilenght = ilenght + 1;
+  }
+  let jlenght: number = Math.round(cellnumber / 2);
 
-function hexagonmiddle(cellsize: number, cells: number) {
+  let ax: number = origox;
+  let ay: number = origoy;
+  let bx: number = origox + cellsize;
+  let by: number = origoy;
+  let cx: number = origox + cellsize + cellsize / 2;
+  let cy: number = origoy - halfcellhigh;
+  let dx: number = origox + cellsize;
+  let dy: number = origoy - halfcellhigh * 2;
+  let ex: number = origox;
+  let ey: number = origoy - halfcellhigh * 2;
+  let fx: number = origox - cellsize / 2;
+  let fy: number = origoy - halfcellhigh;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < cells; i++) {
     ctx.strokeStyle =
       "rgb(" +
@@ -46,10 +49,9 @@ function hexagonmiddle(cellsize: number, cells: number) {
 
     ctx.stroke();
   }
-}
-hexagonmiddle(cellsize, cellnumber);
 
-function hexagonrightside(cellsize: number, cells: number) {
+  //hexagonmiddle(getcellsize, cellnumber);
+
   for (let i = 0; i < ilenght; i++) {
     for (let j = 0; j < jlenght; j++) {
       ctx.strokeStyle =
@@ -60,41 +62,40 @@ function hexagonrightside(cellsize: number, cells: number) {
         ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax + i * (cellsize + cellsize / 2),
+        ax + i * (getcellsize + getcellsize / 2),
         ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx + i * (cellsize + cellsize / 2),
+        bx + i * (getcellsize + getcellsize / 2),
         by - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx + i * (cellsize + cellsize / 2),
+        cx + i * (getcellsize + getcellsize / 2),
         cy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx + i * (cellsize + cellsize / 2),
+        dx + i * (getcellsize + getcellsize / 2),
         dy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex + i * (cellsize + cellsize / 2),
+        ex + i * (getcellsize + getcellsize / 2),
         ey - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx + i * (cellsize + cellsize / 2),
+        fx + i * (getcellsize + getcellsize / 2),
         fy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax + i * (cellsize + cellsize / 2),
+        ax + i * (getcellsize + getcellsize / 2),
         ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
 
       ctx.stroke();
     }
   }
-}
-hexagonrightside(cellsize, cellnumber);
 
-function hexagonleftside(cellsize: number, cells: number) {
+  //hexagonrightside(getcellsize, cellnumber);
+
   for (let i = 0; i < ilenght; i++) {
     for (let j = 0; j < jlenght; j++) {
       ctx.strokeStyle =
@@ -105,56 +106,55 @@ function hexagonleftside(cellsize: number, cells: number) {
         ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax - i * (cellsize + cellsize / 2),
+        ax - i * (getcellsize + getcellsize / 2),
         ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx - i * (cellsize + cellsize / 2),
+        bx - i * (getcellsize + getcellsize / 2),
         by - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx - i * (cellsize + cellsize / 2),
+        cx - i * (getcellsize + getcellsize / 2),
         cy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx - i * (cellsize + cellsize / 2),
+        dx - i * (getcellsize + getcellsize / 2),
         dy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex - i * (cellsize + cellsize / 2),
+        ex - i * (getcellsize + getcellsize / 2),
         ey - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx - i * (cellsize + cellsize / 2),
+        fx - i * (getcellsize + getcellsize / 2),
         fy - i * halfcellhigh - j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax - i * (cellsize + cellsize / 2),
+        ax - i * (getcellsize + getcellsize / 2),
         ay - i * halfcellhigh - j * 2 * halfcellhigh
       );
 
       ctx.stroke();
     }
   }
-}
-hexagonleftside(cellsize, cellnumber);
 
-function hexagonrighttop(cellsize: number, cells: number) {
+  //hexagonleftside(getcellsize, cellnumber);
+
   for (let i = 0; i < ilenght; i++) {
     for (let j = 0; j < jlenght; j++) {
       let ax: number = origox;
       let ay: number = origoy - halfcellhigh * 2 * (cells - 1);
-      let bx: number = origox + cellsize;
+      let bx: number = origox + getcellsize;
       let by: number = origoy - halfcellhigh * 2 * (cells - 1);
-      let cx: number = origox + cellsize + cellsize / 2;
+      let cx: number = origox + getcellsize + getcellsize / 2;
       let cy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
-      let dx: number = origox + cellsize;
+      let dx: number = origox + getcellsize;
       let dy: number =
         origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
       let ex: number = origox;
       let ey: number =
         origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
-      let fx: number = origox - cellsize / 2;
+      let fx: number = origox - getcellsize / 2;
       let fy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
 
       ctx.strokeStyle =
@@ -165,91 +165,90 @@ function hexagonrighttop(cellsize: number, cells: number) {
         ", 0)";
       ctx.beginPath();
       ctx.moveTo(
-        ax + i * (cellsize + cellsize / 2),
+        ax + i * (getcellsize + getcellsize / 2),
         ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx + i * (cellsize + cellsize / 2),
+        bx + i * (getcellsize + getcellsize / 2),
         by + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx + i * (cellsize + cellsize / 2),
+        cx + i * (getcellsize + getcellsize / 2),
         cy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx + i * (cellsize + cellsize / 2),
+        dx + i * (getcellsize + getcellsize / 2),
         dy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex + i * (cellsize + cellsize / 2),
+        ex + i * (getcellsize + getcellsize / 2),
         ey + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx + i * (cellsize + cellsize / 2),
+        fx + i * (getcellsize + getcellsize / 2),
         fy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax + i * (cellsize + cellsize / 2),
+        ax + i * (getcellsize + getcellsize / 2),
         ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
 
       ctx.stroke();
     }
   }
-}
-hexagonrighttop(cellsize, cellnumber);
 
-function hexagonlefttop(cellsize: number, cells: number) {
+  //hexagonrighttop(getcellsize, cellnumber);
+
   for (let i = 0; i < ilenght; i++) {
     for (let j = 0; j < jlenght; j++) {
       let ax: number = origox;
       let ay: number = origoy - halfcellhigh * 2 * (cells - 1);
-      let bx: number = origox + cellsize;
+      let bx: number = origox + getcellsize;
       let by: number = origoy - halfcellhigh * 2 * (cells - 1);
-      let cx: number = origox + cellsize + cellsize / 2;
+      let cx: number = origox + getcellsize + getcellsize / 2;
       let cy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
-      let dx: number = origox + cellsize;
+      let dx: number = origox + getcellsize;
       let dy: number =
         origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
       let ex: number = origox;
       let ey: number =
         origoy - halfcellhigh * 2 - halfcellhigh * 2 * (cells - 1);
-      let fx: number = origox - cellsize / 2;
+      let fx: number = origox - getcellsize / 2;
       let fy: number = origoy - halfcellhigh - halfcellhigh * 2 * (cells - 1);
 
       ctx.strokeStyle =
         "rgb(" +
-        Math.floor(260 - 20 * i) +
+        Math.floor(240 - 20 * i) +
         ", " +
         Math.floor(260 - 20 * j) +
-        ", 0)";
+        ", 50)";
       ctx.beginPath();
       ctx.moveTo(
-        ax - i * (cellsize + cellsize / 2),
+        ax - i * (getcellsize + getcellsize / 2),
         ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        bx - i * (cellsize + cellsize / 2),
+        bx - i * (getcellsize + getcellsize / 2),
         by + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        cx - i * (cellsize + cellsize / 2),
+        cx - i * (getcellsize + getcellsize / 2),
         cy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        dx - i * (cellsize + cellsize / 2),
+        dx - i * (getcellsize + getcellsize / 2),
         dy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ex - i * (cellsize + cellsize / 2),
+        ex - i * (getcellsize + getcellsize / 2),
         ey + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        fx - i * (cellsize + cellsize / 2),
+        fx - i * (getcellsize + getcellsize / 2),
         fy + i * halfcellhigh + j * 2 * halfcellhigh
       );
       ctx.lineTo(
-        ax - i * (cellsize + cellsize / 2),
+        ax - i * (getcellsize + getcellsize / 2),
         ay + i * halfcellhigh + j * 2 * halfcellhigh
       );
 
@@ -257,4 +256,20 @@ function hexagonlefttop(cellsize: number, cells: number) {
     }
   }
 }
-hexagonlefttop(cellsize, cellnumber);
+hexagon(cellsize, cellnumber);
+
+var scale = document.getElementById("myRange") as HTMLInputElement;
+scale.oninput = function () {
+  cellsize = parseInt(scale.value);
+
+  hexagon(cellsize, cellnumber);
+};
+
+var size = document.getElementById("myRange2") as HTMLInputElement;
+size.oninput = function () {
+  cellnumber = parseInt(size.value);
+
+  hexagon(cellsize, cellnumber);
+};
+
+//getcellsize = (<HTMLInputElement>document.getElementById("rangeInput")).value;
