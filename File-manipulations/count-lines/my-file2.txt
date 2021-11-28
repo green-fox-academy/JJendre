@@ -1,0 +1,9 @@
+If you can read these lines, I am a genius!!!!  :) In any case
+// Write a function called countLines() that takes a filename as string as a parameter
+// and returns the number of lines the file contains.
+// It should return zero if it can't open the file, and
+// should not raise any error.
+ Write a program that opens a file called "my-file.txt" and prints
+ each line from the file.
+ If the program is unable to read the file (for example it does not exist),
+ it should print the following error message: "Unable to read file: my-file.txt"
