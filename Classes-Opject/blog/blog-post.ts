@@ -63,4 +63,4 @@ const BlogPost3: BlogPost = new BlogPost(
 BlogPost1.lookBlogPost();
 BlogPost2.lookBlogPost();
 BlogPost3.lookBlogPost();
-export { BlogPost, BlogPost1 };
+export { BlogPost, BlogPost1, BlogPost2 };
