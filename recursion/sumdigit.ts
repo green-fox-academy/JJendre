@@ -1,7 +1,6 @@
 //Given a non-negative integer n, return the sum of its digits recursively (without loops).
 
 function sumDigit(n: number): void {
-  let x = 0;
   let numberToString: string = n.toString();
   let stringArray: string[] = numberToString.split('');
   let numberArray: number[] = [];
