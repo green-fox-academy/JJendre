@@ -19,18 +19,7 @@ export class Wall {
   placeBlock(block: Block): void {
     if (this.listOfBlocks.length === 0) {
       this.listOfBlocks.push(block);
-    }
-    // else if (
-    //   this.listOfBlocks[this.listOfBlocks.length - 1].canTransform(
-    //     block.type
-    //   ) === true
-    // ) {
-    //   this.listOfBlocks[this.listOfBlocks.length - 1].blockTotransform =
-    //     block.type;
-    //   block = block.transformToWhat;
-    //   this.listOfBlocks.push(block);
-    // }
-    else if (
+    } else if (
       block.canTransform(
         this.listOfBlocks[this.listOfBlocks.length - 1].type
       ) === true
