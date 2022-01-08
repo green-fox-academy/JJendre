@@ -48,8 +48,8 @@ export abstract class Animal {
     return this.reproduce();
   }
   abstract reproduce(): string;
-  eat(): string {
-    return this.eating();
+  eat() {
+    return this.eating;
   }
   abstract eating(): string;
 }

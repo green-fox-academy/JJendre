@@ -1,3 +1,4 @@
+//let number:number=-1;
 // Create a program that
 // prints the multiplication table with number
 //
@@ -14,11 +15,9 @@
 // 8 * 15 = 120
 // 9 * 15 = 135
 // 10 * 15 = 150
-//export function multiplicationTable(number: number) {
+export function multiplicationTable(number:number) {
     // write your code here for Gradescope testing}
-  
-
-let number: number = 15;
+//console.log('number= ' +number);
 { for (let a: number = 1; a < 11; a++) 
- console.log(a+'*15='+a*15);
-};
+ console.log(a+' * '+number+' = '+a*number);
+}};

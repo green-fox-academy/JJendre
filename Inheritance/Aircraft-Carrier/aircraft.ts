@@ -83,7 +83,7 @@ export class Aircraft {
   refillAmmo(storedAmmo: number): number {
     let capacytyOfammo = this.maxAmmo - this.ammunition;
     this.ammunition += capacytyOfammo;
-    return (storedAmmo = storedAmmo - capacytyOfammo);
+    return (storedAmmo -= capacytyOfammo);
   }
   getType(): string {
     return this.type;

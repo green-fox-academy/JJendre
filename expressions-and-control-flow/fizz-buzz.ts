@@ -3,9 +3,9 @@
 // and for the multiples of five print “Buzz”
 // For numbers which are multiples of both three and five print “FizzBuzz”
 
-//export function fizzBuzz() {
+export function fizzBuzz() {
     // write your code here for Gradescope testing  }
-for (let i: number = 0; i < 101; i++) {
+for (let i: number = 1; i < 101; i++) {
   let i3=(i/3);
   let ir3=Math.round(i3);
   let i5=(i/5);
@@ -18,4 +18,4 @@ for (let i: number = 0; i < 101; i++) {
    else if(i3==ir3){console.log('Fizz')
    }
    else {console.log(i);
-}};
+}}};

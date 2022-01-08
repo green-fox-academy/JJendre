@@ -1,0 +1,31 @@
+{
+  "name": "jjendre",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/green-fox-academy/JJendre.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/green-fox-academy/JJendre/issues"
+  },
+  "homepage": "https://github.com/green-fox-academy/JJendre#readme",
+  "dependencies": {
+    "@types/node": "^16.11.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/tape": "^4.13.2",
+    "jest": "^27.4.5",
+    "tape": "^5.3.2"
+  },
+  "keywords": [],
+  "description": ""
+}

@@ -44,7 +44,7 @@ export class Carrier {
     this.aircrafts.forEach((element) => {
       sumDamage = element.fights() + sumDamage;
     });
-    return (carrier.health = carrier.health - sumDamage);
+    return (carrier.health -= sumDamage);
   }
 
   getStatus(): void {

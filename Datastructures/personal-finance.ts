@@ -1,5 +1,3 @@
-import { sum } from "./sum";
-
 /*Create a list with the following items:
 500, 1000, 1250, 175, 800 and 120
 Create an application which prints out the answers to the following questions:

@@ -18,6 +18,7 @@ function fibonacci(n: number): number {
 }
 console.log(fibonacci(5));
 
+//alternative solution all sequences push in an array
 function fibonacciArray(n: number): Array<number> {
   if (n < 2) {
     return [1];

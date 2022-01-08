@@ -27,4 +27,6 @@ for (let i: number = 1; i < lineCount+z; i++){
             let spacemult=space.repeat(((lineCount)-i)/2);
             let multi =single.repeat(i);
             if(ihalf!=ihalfr){        
-            console.log(spacemult+multi);}}}}
+            console.log(spacemult+multi);
+        }}}};
+        
