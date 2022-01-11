@@ -41,7 +41,7 @@ export function translate(hungarian: string): string {
   let teve = hungarian;
   let length = teve.length;
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length - 1; i++) {
     let c = teve[i];
     if (isVowel(c)) {
       teve = teve.split(c).join(`${c}v${c}`);
@@ -51,3 +51,5 @@ export function translate(hungarian: string): string {
   }
   return teve;
 }
+// console.log(isVowel('e'));
+// console.log(translate('bemutatkozik'));
