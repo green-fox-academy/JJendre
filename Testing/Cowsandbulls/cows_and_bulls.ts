@@ -1,10 +1,12 @@
-class Cab {
+export class Cab {
   digit: number = 0;
-  randomdigitArray: number[] = [];
+  randomdigitArray: any[] = [];
   numberFromUser: number = 0;
   guesses: number = 0;
   cows: number = 0;
   bulls: number = 0;
+  nowplaying: string = '';
+  played: number[][] = [];
 
   random4Digits(): Array<number> {
     this.digit = Math.floor(1000 + Math.random() * 9000);
@@ -13,12 +15,16 @@ class Cab {
     return randomdigitArray;
   }
   check(numberFromUser: number) {
-    this.counter();
     this.randomdigitArray = this.random4Digits();
-    let fourDigitArray: number[] = numberFromUser
-      .toString()
-      .split('')
-      .map(Number);
+    this.numberFromUser = numberFromUser;
+    this.nowplaying = this.digit + ' / ' + this.numberFromUser;
+    let currentPlayArray: number[] = [this.digit, this.numberFromUser];
+    this.played.push(currentPlayArray);
+
+    this.cows = 0;
+    this.bulls = 0;
+    this.counter();
+    let fourDigitArray: any[] = numberFromUser.toString().split('').map(Number);
 
     if (numberFromUser < 1000 || numberFromUser > 9999) {
       return 'please add a 4 digit number';
@@ -26,35 +32,37 @@ class Cab {
     for (let i = 0; i < fourDigitArray.length; i++) {
       if (fourDigitArray[i] === this.randomdigitArray[i]) {
         this.cows += 1;
-      } else if (this.randomdigitArray.includes(fourDigitArray[i])) {
-        console.log(this.randomdigitArray[i]);
-        console.log(fourDigitArray);
-        console.log(this.randomdigitArray.includes(fourDigitArray[i]));
-        this.bulls += 1;
+        fourDigitArray[i] = NaN;
+      } else {
+        let count = 0;
+        for (var j = 0; j < fourDigitArray.length; j++) {
+          if (fourDigitArray[j] === this.randomdigitArray[i]) {
+            this.randomdigitArray[i] = NaN;
+            count++;
+          }
+        }
+        this.bulls = this.bulls + count;
       }
     }
     return (
-      'Result from: ' +
+      'From random: ' +
       this.digit +
-      ' is: ' +
+      ' The result is: ' +
       this.cows +
       ' cow, ' +
       this.bulls +
       ' bull'
     );
   }
-
   counter(): number {
     return (this.guesses += 1);
   }
+  status() {
+    console.log('Now playing: [' + this.nowplaying + '] ');
+    console.log('played');
+    return this.played;
+  }
 }
-let guess = new Cab();
 
-console.log(guess.check(8888));
-console.log(guess.check(8888));
-console.log(guess.check(8888));
-console.log(guess.check(8888));
-
-console.log(guess.guesses);
-
-console.log([4, 5, 6].includes(4));
+let cow1 = new Cab();
+console.log(cow1.random4Digits());
