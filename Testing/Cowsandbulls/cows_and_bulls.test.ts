@@ -21,4 +21,15 @@ describe('Cows and bulls test', () => {
       'From random: 1234 The result is: 1 cow, 1 bull'
     );
   });
+  test('check counter function it should be 1', function () {
+    const guess1 = new Cab();
+    expect(guess1.counter()).toBe(1);
+  });
+
+  test('status function', function () {
+    const guess1 = new Cab();
+    guess1.random4Digits = jest.fn().mockReturnValue([1, 2, 3, 4]);
+    guess1.check(8888);
+    expect(guess1.status()).toEqual([[0, 8888]]);
+  });
 });
