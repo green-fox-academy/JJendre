@@ -76,9 +76,8 @@ export class Aircraft {
   }
 
   fights(): number {
-    let damage = this.baseDamage * this.ammunition;
     this.ammunition = 0;
-    return damage;
+    return this.baseDamage * this.ammunition;
   }
   refillAmmo(storedAmmo: number): number {
     let capacytyOfammo = this.maxAmmo - this.ammunition;
@@ -90,25 +89,16 @@ export class Aircraft {
   }
   getStatus(): void {
     console.log(
-      'Type ' +
-        this.type +
-        ',' +
-        ' Ammo: ' +
-        this.ammunition +
-        ',' +
-        ' Base Damage: ' +
-        this.baseDamage +
-        ',' +
-        ' All Damage: ' +
-        this.ammunition * this.baseDamage
+      `Type ${this.type}, Ammo: ${this.ammunition}, Base Damage: ${
+        this.baseDamage
+      }, All Damage: ${this.ammunition * this.baseDamage}`
     );
   }
 
   isPriority(): boolean {
     if (this.type === 'F35') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 }

@@ -2,14 +2,13 @@ import { Aircraft } from './aircraft';
 import { F16 } from './f16';
 import { F35 } from './F35';
 export class Carrier {
-  aircrafts: Aircraft[];
+  aircrafts: Aircraft[] = [];
   storedAmmo: number;
   health: number;
 
   constructor(storedAmmo: number, health: number) {
     this.storedAmmo = storedAmmo;
     this.health = health;
-    this.aircrafts = [];
   }
   add(aircraft: Aircraft): void {
     this.aircrafts.push(aircraft);
