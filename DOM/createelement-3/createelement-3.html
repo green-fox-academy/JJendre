@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Workshop: CreateElement</title>
+  </head>
+
+  <body>
+    <main>
+      <div id="kids"></div>
+    </main>
+
+    <script>
+      const kids = [
+        { petName: 'Wattled crane', owner: 'Bryant' },
+        { petName: 'Devil, tasmanian', owner: 'Alejandro' },
+        { petName: 'Mynah, common', owner: 'Nelie' },
+        { petName: 'Dolphin, common', owner: 'Mariele' },
+        { petName: 'Gray duiker', owner: 'Maddalena' },
+        { petName: 'Crab (unidentified)', owner: 'Lucine' },
+        { petName: 'Ant (unidentified)', owner: 'Lorianna' },
+        { petName: 'Bison, american', owner: 'Tommie' },
+        { petName: 'Yellow mongoose', owner: 'Vivyan' },
+        { petName: 'Carpet snake', owner: 'Veda' },
+        { petName: 'Lesser mouse lemur', owner: 'Isidor' },
+      ];
+      const containerDiv = document.querySelector('div');
+      kids.forEach((element) => {
+        const newArticle = document.createElement('article');
+        const owner = document.createElement('h3');
+        owner.textContent = element.owner;
+        const petName = document.createElement('p');
+        petName.textContent = element.petName;
+        newArticle.appendChild(owner);
+        newArticle.appendChild(petName);
+        containerDiv.appendChild(newArticle);
+      });
+
+      //   1) Create an <article> element for each kid
+      //   2) Create a <h3> and a <p> element for each article and append them as a child to the <article>
+      //       - The H3 should contain the owner's name
+      //       - The p should contain the pet's name
+
+      //   3) Add the article to the pets main.
+    </script>
+  </body>
+</html>
