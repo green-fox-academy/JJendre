@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 1200;
+  background: #ffd62a;
+}
+.item {
+  height: 150px;
+  margin: 0px;
+  width: 150px;
+}
+
+.item.purple {
+  background: #b02afe;
+}

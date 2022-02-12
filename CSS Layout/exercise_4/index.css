@@ -1,0 +1,29 @@
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding: 0px;
+}
+.head {
+  background: purple;
+  height: 50px;
+}
+input {
+  background: cyan;
+  margin: 7px;
+  height: 30px;
+}
+.email {
+  width: 100px;
+}
+.aside {
+  background: lime;
+  flex-grow: 1;
+  height: 500px;
+}
+
+.yell {
+  background: yellow;
+  flex-grow: 4;
+  height: 500px;
+}

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 100%;
+}
+.item {
+  width: 100%;
+  margin: 0px;
+  flex-grow: 1;
+}
+.item.green {
+  background: #51d400;
+}
+.item.purple {
+  background: #b02afe;
+}
+.item.yellow {
+  background: #ffd62a;
+  flex-grow: 2;
+}
