@@ -1,0 +1,42 @@
+.container {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.head {
+  height: 200px;
+  background: aqua;
+}
+#main {
+  display: inline-flex;
+  height: 1400px;
+  width: 100%;
+}
+.left {
+  background: darkorange;
+  flex-grow: 1;
+}
+.middle {
+  background: red;
+  flex-grow: 3;
+  margin: 0 40 0 40;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+}
+.item {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  margin: 40;
+}
+.right {
+  background: purple;
+  flex-grow: 1;
+}
+
+.foot {
+  height: 200px;
+  background: rgb(10, 6, 212);
+}

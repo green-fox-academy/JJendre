@@ -1,0 +1,60 @@
+main {
+  border: 7px solid black;
+  border-radius: 20px;
+  margin: 20px;
+  width: 1200px;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding: 0px;
+  width: 100%;
+  margin: 5px;
+}
+.first {
+  background: purple;
+  height: 90px;
+  margin: 40px 0px 0px 0px;
+  width: 1121px;
+  border-top: 7px solid black;
+  padding: 10 20 0 60;
+  position: fixed;
+  z-index: 100;
+}
+input {
+  background: cyan;
+  margin: 14px;
+  height: 45px;
+  width: 100;
+}
+#name {
+  width: 150;
+}
+.email {
+  width: 100px;
+}
+
+.second {
+  margin: 8px 80px 0px 70px;
+  width: 90%;
+}
+.aside {
+  background: lime;
+  width: 40%;
+  height: 900px;
+  margin-top: 152;
+}
+
+.yell {
+  background: yellow;
+  height: 900px;
+  margin-top: 152;
+}
+.bottom {
+  background: lightgrey;
+  width: 90%;
+  height: 50px;
+  margin: 5px 80px 50px 70px;
+}
