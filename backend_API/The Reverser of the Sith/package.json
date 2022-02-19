@@ -1,0 +1,15 @@
+{
+  "name": "the-reverser-of-the-sith",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reverser_of_sith.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
